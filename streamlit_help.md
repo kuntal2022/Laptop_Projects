@@ -134,3 +134,45 @@
 # 6. Alerts
 * if api_key == "":
     st.warning("Please enter API key in sidebar")
+
+
+# Page Config
+* st.set_page_config(page_title="Math Agent", layout="wide", page_icon="🤖")
+
+# Color 
+* CSS_STYLES = """
+    <style>
+        /* 1. Adjust the container to remove extra padding */
+        .main {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        
+        /* 2. Make the "Thinking..." box smaller and white */
+        div[data-testid="stStatusText"] {
+            font-size: 0.85rem;
+            color: #ffffff;
+        }
+        
+        /* 3. Style the "Thinking..." spinning wheel */
+        div[data-testid="stStatus"] > div {
+            color: #ffffff;
+            background: transparent;
+            border-color: #ffffff; /* White border for the spinner */
+        }
+        
+        /* 4. Style the spinner animation itself if needed */
+        div[data-testid="stStatus"] > div > div {
+            border-top-color: #005fcc; /* Blue color for the spinner arc */
+        }
+    </style>
+    """
+    st.markdown(CSS_STYLES, unsafe_allow_html=True)
+
+# 4. Status spinner (shows when working)
+* if submit_btn:
+    with st.status("Thinking...", expanded=True) as status:
+        st.write("Processing your request...")
+        # Your AI logic here
+        time.sleep(3)
+        st.success("Done!")
